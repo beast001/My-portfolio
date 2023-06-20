@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.core.paginator import Paginator, EmptyPage
+from django.contrib import messages
 from .models import *
 
 def index(request):
@@ -122,3 +123,28 @@ def contact(request):
 	
 
 	return render(request, 'home_page/contact.html', context)
+
+def subscriber(request):
+	if request.method=='POST':
+		email=request.POST['email']
+		contact=Subscribers.objects.create(email=email)
+		messages.success(request,'Subscription Successfull')
+
+	My_profile_nav_object = My_profile_nav.objects.all()
+	My_blog_object = My_blog.objects.all()
+
+	p = Paginator(My_blog_object, 6)
+	page_num = request.GET.get('page', 1)
+
+	try:
+		page = p.page(page_num)
+	except EmptyPage:
+		page = p.page(1)
+
+	context = {
+		'My_profile_nav_object': My_profile_nav_object,
+		'My_blog_object': page,
+	}
+        
+	return render(request, 'home_page/blog-home.html', context)
+

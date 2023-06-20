@@ -201,3 +201,9 @@ class Contact(models.Model):
 
     def __str__(self):
         return self.con_name
+    
+class Subscribers(models.Model):
+    email=models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.email

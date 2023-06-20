@@ -13,10 +13,16 @@
 			    <h2 class="heading">A Blog About Software Development And Life</h2>
 			    <div class="intro">Welcome to my blog. Subscribe and get my latest blog post in your inbox.</div>
 			    
-			     <form class="signup-form form-inline justify-content-center pt-3" action="https://tusher16.us6.list-manage.com/subscribe/post?u=0ae83f3876472d9539b39763e&amp;id=53bd5b3ecb" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-                    <div class="form-group">
+			     <form class="signup-form form-inline justify-content-center pt-3" action="/sub-form" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+					{% if messages %}
+					{% for msg in messages %}
+					<p>{{msg}}</p>
+					{% endfor %}
+				{% endif %}
+					{% csrf_token %}
+					<div class="form-group">
                         <label class="sr-only" for="semail" for="mce-EMAIL">Your email</label>
-                        <input type="email" id="semail" class="form-control mr-md-1 semail" placeholder="Enter email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
+                        <input type="email" id="semail" class="form-control mr-md-1 semail" placeholder="Enter email" value="" name="email" class="required email" id="mce-EMAIL">
                     </div>
 
                     <div id="mce-responses" class="clear">
