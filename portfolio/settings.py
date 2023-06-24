@@ -82,7 +82,7 @@ DATABASES = {
     'default': {
         'ENGINE': config('ENGINE'),
         'NAME': config('NAME'),
-        'USER': config('USER2'),
+        'USER': config('USER'),
         'PASSWORD': config('PASSWORD'),
         'HOST': config('HOST'),
         'PORT': config('PORT'),
